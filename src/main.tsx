@@ -1,11 +1,9 @@
-// src/main.tsx - FINAL CORRECTED IMPORTS
+// src/main.tsx - Test with just the App component
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import { CartProvider } from './context/CartContext.jsx';
-import { AuthProvider } from './context/AuthContext.jsx';
+import App from './App.tsx'; // We are adding the main App back
 
-// 👇 These are the ONLY CSS imports you should have 👇
+// All our organized stylesheets
 import './styles/global.css';
 import './styles/navbar.css';
 import './styles/homepage.css';
@@ -13,10 +11,6 @@ import './styles/components.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </AuthProvider>
+    <App />
   </React.StrictMode>,
 );
