@@ -1,0 +1,133 @@
+/* src/styles/homepage.css - MASTERPIECE RESTORED */
+
+.homepage-v4 {
+    position: relative;
+    background: #000;
+    overflow-x: hidden;
+  }
+  .monolith-container {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+  .monolith-v4 {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .monolith-glow-v4 {
+    width: 2px;
+    height: 200%;
+    background: white;
+    box-shadow: 0 0 10px #fff, 0 0 25px #fff, 0 0 50px #fff, 0 0 100px #8B0000;
+  }
+  .monolith-title-v4 {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10vw;
+    font-weight: 700;
+    letter-spacing: 0.5rem;
+    color: rgba(245, 245, 220, 0.9);
+    text-shadow: 0 0 20px rgba(0,0,0,1);
+    pointer-events: none;
+  }
+  .journey-content-v4 {
+    position: relative;
+    z-index: 10;
+    background: #000;
+  }
+  .showcase-container-v4 {
+    position: relative;
+    height: 300vh;
+  }
+  .conduit-svg {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    stroke: rgba(139, 0, 0, 0.4);
+    stroke-width: 2px;
+    fill: none;
+  }
+  .showcase-item {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  }
+  .showcase-item img {
+    width: 50vw;
+    height: 70vh;
+    object-fit: cover;
+    filter: grayscale(30%);
+    box-shadow: 0 0 50px 20px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .showcase-label {
+    position: absolute;
+    bottom: 10%;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 10px black;
+  }
+  .showcase-item.one { justify-content: flex-start; align-items: center; padding-left: 10%; }
+  .showcase-item.one .showcase-label { left: 10%; text-align: left; }
+  .showcase-item.two { justify-content: flex-end; align-items: center; padding-right: 10%; }
+  .showcase-item.two .showcase-label { right: 10%; text-align: right; }
+  .showcase-item.three { justify-content: center; align-items: flex-start; padding-top: 10%; }
+  .showcase-item.three .showcase-label { top: 10%; bottom: auto; }
+  
+  .final-invitation {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+  .reveal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #F5F5DC;
+    text-shadow: 0 0 15px rgba(245, 245, 220, 0.3);
+  }
+  .reveal-buttons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .reveal-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border: 1px solid rgba(245, 245, 220, 0.2);
+    border-radius: 50%;
+    color: rgba(245, 245, 220, 0.8);
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .reveal-button:hover {
+    border-color: #8B0000;
+    background-color: rgba(139, 0, 0, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(139, 0, 0, 0.5);
+  }
+  .reveal-button span {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .reveal-button small {
+    font-size: 0.75rem;
+    opacity: 0.6;
+  }

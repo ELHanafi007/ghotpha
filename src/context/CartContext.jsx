@@ -1,52 +1,59 @@
-// src/context/CartContext.jsx
+// src/context/CartContext.jsx - VERIFIED FINAL VERSION
 import React, { createContext, useState, useContext } from 'react';
 
-// 1. Create the context itself
 const CartContext = createContext();
 
-// 2. Create a custom hook to make it easy to use the context in other components
 export const useCart = () => {
   return useContext(CartContext);
 };
 
-// 3. Create the Provider component that will wrap our entire app
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]); // This state holds the products in the cart
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Function to add a product to the cart
   const addToCart = (product) => {
     setCartItems(prevItems => {
-      // Check if the item is already in the cart
       const itemExists = prevItems.find(item => item.id === product.id);
       if (itemExists) {
-        // For now, we'll just alert the user. Later we can add quantity.
-        alert(`${product.name} is already in the cart.`);
-        return prevItems;
+        // If item exists, update its quantity
+        return prevItems.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
       }
-      // If not, add the new product
+      // If not, add the new product with quantity 1
       return [...prevItems, { ...product, quantity: 1 }];
     });
-    console.log(`${product.name} added to cart!`);
+    setIsCartOpen(true); // Open the cart drawer when an item is added
   };
 
-  // Function to remove a product from the cart
+  const updateQuantity = (productId, amount) => {
+    setCartItems(prevItems => {
+      return prevItems.map(item => {
+        if (item.id === productId) {
+          const newQuantity = item.quantity + amount;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : null;
+        }
+        return item;
+      }).filter(item => item !== null);
+    });
+  };
+
   const removeFromCart = (productId) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
   };
 
-  // We can add more functions later, like updating quantity or clearing the cart
+  const clearCart = () => setCartItems([]);
 
-  // The value object holds all the state and functions we want to make available globally
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
   const value = {
-    cartItems,
-    addToCart,
-    removeFromCart,
-    cartCount: cartItems.length, // A simple count of unique items in the cart
+    cartItems, addToCart, removeFromCart, updateQuantity, clearCart,
+    cartCount, cartTotal, isCartOpen, openCart, closeCart,
   };
 
-  return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

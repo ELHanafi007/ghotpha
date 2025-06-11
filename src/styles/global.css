@@ -1,0 +1,18 @@
+/* src/index.css - FINAL MASTER VERSION */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+body { /* ... global body styles ... */ }
+.App { /* ... app layout styles ... */ }
+
+/* === NAVBAR STYLES === */
+.nav-link-desktop { /* ... */ }
+/* ... all other navbar styles ... */
+
+/* === HOMEPAGE V4 STYLES === */
+.homepage-v4 { /* ... all masterpiece homepage styles ... */ }
+
+/* === ALL OTHER COMPONENT STYLES === */
+.chambers-container { /* ... */ }
+.filter-button { /* ... */ }
+/* ... etc ... */

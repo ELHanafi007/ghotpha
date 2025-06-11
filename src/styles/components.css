@@ -1,0 +1,199 @@
+/* src/styles/components.css - MASTER VERSION */
+
+/* === CHAMBERS PAGE ("Keyhole") STYLES === */
+.chambers-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    color: #F5F5DC;
+    padding: 2rem;
+    text-align: center;
+    font-family: 'Lora', serif;
+    overflow: hidden;
+    position: relative;
+    transition: opacity 0.5s ease-out;
+  }
+  .chambers-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.1;
+    animation: particle-drift 80s linear infinite;
+  }
+  @keyframes particle-drift {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-200px, -200px); }
+  }
+  .chambers-content {
+    animation: blur-in 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    transition: opacity 0.5s ease-out;
+  }
+  @keyframes blur-in {
+    from { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+  .portal-button-container {
+    margin-top: 3rem;
+    animation: blur-in 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+  }
+  .portal-button {
+    position: relative; width: 150px; height: 150px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    color: #F5F5DC;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    animation: portal-pulse 4s infinite ease-in-out;
+    overflow: hidden;
+  }
+  @keyframes portal-pulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(139,0,0,0.4), inset 0 0 10px rgba(139,0,0,0.3); }
+    50% { box-shadow: 0 0 30px rgba(139,0,0,0.8), inset 0 0 15px rgba(139,0,0,0.5); }
+  }
+  .portal-peek {
+    position: absolute; inset: 0;
+    background-image: url('/fragrance-room-glimpse.jpg');
+    background-size: cover; background-position: center;
+    opacity: 0;
+    transform: scale(1.2);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .portal-button:hover .portal-peek { opacity: 1; transform: scale(1); }
+  .portal-text { position: relative; z-index: 2; transition: letter-spacing 0.5s ease; }
+  .portal-button:hover .portal-text { letter-spacing: 2px; }
+  .chambers-container::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    width: 150px; height: 150px;
+    border-radius: 50%; background: black;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 100; pointer-events: none;
+  }
+  .chambers-container.navigating .chambers-content,
+  .chambers-container.navigating .portal-button-container { opacity: 0; }
+  .chambers-container.navigating::after { animation: iris-wipe 1s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
+  @keyframes iris-wipe {
+    from { transform: translate(-50%, -50%) scale(0); }
+    to { transform: translate(-50%, -50%) scale(30); }
+  }
+  
+  /* === FRAGRANCES PAGE STYLES === */
+  .filter-button {
+    font-family: 'Lora', serif; font-size: 1.125rem;
+    color: rgba(245, 245, 220, 0.6);
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    transition: all 0.3s ease-out;
+  }
+  .filter-button:hover {
+    color: rgba(245, 245, 220, 1);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  .active-filter {
+    color: #F5F5DC !important;
+    background-color: #8B0000;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+  }
+  .brand-filter-button {
+    font-family: 'Lora', serif; font-size: 0.875rem;
+    color: rgba(245, 245, 220, 0.5);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(245, 245, 220, 0.2);
+    border-radius: 4px;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+  }
+  .brand-filter-button:hover {
+    color: rgba(245, 245, 220, 1);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(245, 245, 220, 0.4);
+  }
+  .active-brand-filter {
+    color: black;
+    background-color: #F5F5DC;
+    border-color: #F5F5DC;
+    font-weight: 600;
+  }
+  .price-slider .rc-slider-track { background-color: #8B0000; }
+  .price-slider .rc-slider-handle {
+    background-color: #F5F5DC;
+    border: 2px solid #8B0000;
+    opacity: 1;
+    box-shadow: 0 0 5px #8B0000;
+  }
+  .price-slider .rc-slider-handle:hover,
+  .price-slider .rc-slider-handle:active,
+  .price-slider .rc-slider-handle:focus {
+    box-shadow: 0 0 10px #8B0000, 0 0 5px #F5F5DC;
+  }
+  .price-slider .rc-slider-rail { background-color: rgba(245, 245, 220, 0.2); }
+  
+  /* === QUIZ & AUTH STYLES === */
+  .quiz-option-button {
+    display: block; width: 100%; padding: 1.5rem;
+    border: 1px solid rgba(245, 245, 220, 0.2);
+    border-radius: 8px; background-color: transparent;
+    color: rgba(245, 245, 220, 0.7);
+    font-family: 'Lora', serif; font-size: 1.125rem;
+    text-align: center; transition: all 0.3s ease-out;
+  }
+  .quiz-option-button:hover {
+    background-color: rgba(139, 0, 0, 0.2);
+    border-color: #8B0000; color: #F5F5DC;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  .google-button {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; padding: 0.75rem; border: 1px solid rgba(245, 245, 220, 0.3);
+    border-radius: 4px; background-color: transparent; color: #F5F5DC;
+    font-weight: 600; transition: background-color 0.3s ease;
+  }
+  .google-button:hover { background-color: rgba(255, 255, 255, 0.05); }
+  .or-divider {
+    display: flex; align-items: center; text-align: center;
+    color: rgba(245, 245, 220, 0.4);
+  }
+  .or-divider::before, .or-divider::after {
+    content: ''; flex: 1; border-bottom: 1px solid rgba(245, 245, 220, 0.2);
+  }
+  .or-divider span { padding: 0 1rem; font-size: 0.75rem; letter-spacing: 0.1em; }
+  
+  /* === CHECKOUT & CART STYLES === */
+  .checkout-input {
+    width: 100%; padding: 0.75rem 1rem; background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(245, 245, 220, 0.2); border-radius: 4px;
+    color: #F5F5DC; transition: all 0.3s ease;
+  }
+  .checkout-input:focus {
+    outline: none; border-color: #8B0000; box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+  }
+  .checkout-button {
+    width: 100%; padding: 1rem; background-color: #8B0000; color: white;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700;
+    letter-spacing: 1px; border-radius: 8px; transition: all 0.3s ease;
+    animation: checkout-pulse 2.5s infinite; box-shadow: 0 0 15px rgba(139, 0, 0, 0.5);
+  }
+  .checkout-button:hover {
+    background-color: #A52A2A; box-shadow: 0 0 30px rgba(139, 0, 0, 1);
+    transform: scale(1.02); animation-play-state: paused;
+  }
+  @keyframes checkout-pulse {
+    0% { box-shadow: 0 0 15px rgba(139, 0, 0, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(139, 0, 0, 1); }
+    100% { box-shadow: 0 0 15px rgba(139, 0, 0, 0.5); }
+  }
+  .cart-drawer-panel { /* ... and all other Alchemist's Satchel styles ... */ }
